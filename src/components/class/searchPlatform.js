@@ -62,21 +62,26 @@ export default class SearchPlatform extends PureComponent {
         this.setState({ queryString: value.charAt(0).toUpperCase() + value.slice(1) }) 
     }
 
+    formatWikiData = (data) => {
+        debugger;
+    }
+
+    formatDDGoData = (data) => {
+        debugger
+    }
 
     onSearchSubmit = (e) => {
         e.preventDefault();
         const { queryString } = this.state;
         const { fetch } = APIs;
         fetch(queryString).then(resp => {
-            const [wiki] = resp;
-            this.formatWikiData(wiki);
+            const [wikiData, duckDuckGo] = resp;
+            this.formatWikiData(wikiData);
+            this.formatDDGoData(duckDuckGo)
         })
     }
 
 
-    formatWikiData = (data) => {
-        debugger;
-    }
 
 
     render() {

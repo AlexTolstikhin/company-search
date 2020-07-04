@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-
+import * as APIs from '../../searchAPIs/searchAPIs';
 
 
 
@@ -53,17 +53,50 @@ export default class SearchPlatform extends PureComponent {
         super(props);
 
         this.state = {
-
+            queryString: ''
         }
     }
 
 
+    onInputChange = ({ target: { value } }) => {
+        this.setState({ queryString: value.charAt(0).toUpperCase() + value.slice(1) }) 
+    }
+
+
+    onSearchSubmit = (e) => {
+        e.preventDefault();
+        const { queryString } = this.state;
+        const { fetch } = APIs;
+        fetch(queryString).then(resp => {
+            const [wiki] = resp;
+            this.formatWikiData(wiki);
+        })
+    }
+
+
+    formatWikiData = (data) => {
+        debugger;
+    }
+
+
     render() {
+        const { queryString } = this.state;
         return (
             <div>
                 <div style={{...inlineStyles.showMeBorders, ...inlineStyles.inputWrapper}}>
-                    <input type="text" style={inlineStyles.input}></input>
-                    <button style={inlineStyles.submitButton}>Search...</button>
+                    <form onSubmit={!!queryString.length ? (event) => this.onSearchSubmit(event) : e => e.preventDefault()}>
+                        <input
+                            style={inlineStyles.input}
+                            onChange={event => this.onInputChange(event)} 
+                            type="text"
+                            value={queryString}
+                        />
+                        <button
+                            style={inlineStyles.submitButton}
+                        >
+                            Search...
+                        </button>
+                    </form>
                 </div>
                 <div style={{...inlineStyles.showMeBorders, ...inlineStyles.resultsWrapper}}>
                     <ul style={inlineStyles.list}>

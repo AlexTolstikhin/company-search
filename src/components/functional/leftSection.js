@@ -36,9 +36,9 @@ const LeftSection = ({
     }) => 
         <section style={styles.sectionWrapper(isSmallScreen)}>
             <h2>Main Info:</h2>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={styles.topSectionWrapper}>
                 {!!thumbnail.length &&
-                    <span style={styles.topSectionWrapper}>
+                    <span style={{...styles.sectionWrapper, ...styles.titleWrapper}}>
                         <img alt={`${title} thumbnail`} src={thumbnail} height="60px"/>
                     </span>
                 }

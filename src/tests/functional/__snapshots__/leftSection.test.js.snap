@@ -24,8 +24,13 @@ exports[`snaps LeftSection with defined props 1`] = `
       style={
         Object {
           "alignItems": "center",
+          "background": "#c7ede9",
+          "borderRadius": "15px",
           "display": "flex",
+          "height": "100px",
           "justifyContent": "center",
+          "margin": "10px",
+          "width": "100%",
         }
       }
     >

@@ -1,3 +1,11 @@
+The goal of the project to create extensible web-based tool that searches third-party APIs for information about a
+user-specified company 
+
+First time before running scripts, please make sure you run:
+
+### `yarn install`
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-
 function callWiki (query_string) {
     const { WIKIPEDIA = {} } = window;
+    const replaceSpaces = query_string.replace(" ", "_");
     return new Promise((resolve, reject) => {
-        return WIKIPEDIA.getData(`http://en.wikipedia.org/wiki/${query_string}`, resp => resolve(resp))
+        return WIKIPEDIA.getData(`http://en.wikipedia.org/wiki/${replaceSpaces}`, resp => resolve(resp.summary))
     });
 }
 
 function callDuckDuckGo (query_string) {
     const url = `http://api.duckduckgo.com?q=${query_string}&format=json`
-    return axios.get(url).then((response) => response)
+    return axios.get(url).then(({ data: { RelatedTopics = [] } }) => RelatedTopics)
 }
 
 

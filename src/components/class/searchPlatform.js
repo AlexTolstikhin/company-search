@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import * as APIs from '../../searchAPIs/searchAPIs';
 
-
+// components
+import LeftSection from '../functional/leftSection';
 
 const inlineStyles = {
     inputWrapper: {
@@ -25,7 +26,7 @@ const inlineStyles = {
     },
     resultsWrapper: {
         display: 'flex',
-        padding: '0 400px'
+        padding: '0 100px'
     },
     showMeBorders: {
         border: '1px solid grey'
@@ -53,7 +54,8 @@ export default class SearchPlatform extends PureComponent {
         super(props);
 
         this.state = {
-            queryString: ''
+            queryString: '',
+            leftSectionData: {}
         }
     }
 
@@ -62,30 +64,30 @@ export default class SearchPlatform extends PureComponent {
         this.setState({ queryString: value.charAt(0).toUpperCase() + value.slice(1) }) 
     }
 
-    formatWikiData = (data) => {
-        debugger;
-    }
-
-    formatDDGoData = (data) => {
-        debugger
-    }
-
     onSearchSubmit = (e) => {
         e.preventDefault();
         const { queryString } = this.state;
         const { fetch } = APIs;
         fetch(queryString).then(resp => {
             const [wikiData, duckDuckGo] = resp;
-            this.formatWikiData(wikiData);
-            this.formatDDGoData(duckDuckGo)
+            this.setState({
+                leftSectionData: wikiData
+            })
+            console.log(duckDuckGo)
         })
     }
 
-
-
-
     render() {
-        const { queryString } = this.state;
+        const {
+            leftSectionData: {
+                description = '',
+                title = '',
+                summary = '',
+                images = []
+            },
+            queryString
+        } = this.state;
+        console.log(images)
         return (
             <div>
                 <div style={{...inlineStyles.showMeBorders, ...inlineStyles.inputWrapper}}>
@@ -104,10 +106,13 @@ export default class SearchPlatform extends PureComponent {
                     </form>
                 </div>
                 <div style={{...inlineStyles.showMeBorders, ...inlineStyles.resultsWrapper}}>
-                    <ul style={inlineStyles.list}>
-                        <li style={{...inlineStyles.showMeBorders, ...inlineStyles.listItem}}>Results</li>
-                        <li style={{...inlineStyles.showMeBorders, ...inlineStyles.listItem}}>Results</li>
-                    </ul>
+                    <LeftSection
+                        description={description}
+                        images={images}
+                        summary={summary}
+                        title={title}
+                    />
+                    <div>Right Section</div>
                 </div>
             </div>
         )

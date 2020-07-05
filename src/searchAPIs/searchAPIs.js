@@ -10,7 +10,7 @@ function callWiki (query_string) {
 
 function callDuckDuckGo (query_string) {
     const url = `http://api.duckduckgo.com?q=${query_string}&format=json`
-    return axios.get(url).then(({ data: { RelatedTopics = [] } }) => RelatedTopics)
+    return axios.get(url).then(({ data: { RelatedTopics = [] } }) => RelatedTopics.filter(i => i.FirstURL))
 }
 
 

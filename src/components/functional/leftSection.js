@@ -1,18 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { findByLabelText } from '@testing-library/react';
 
 const styles = {
     showMeBorders: {
-        border: '1px solid grey'
+        // border: '1px solid grey'
     },
     sectionWrapper: {
-        width: '50%'
+        width: '60%',
     },
-    imageWrapper: {
-        
+    titleWrapper: {
+        borderRadius: '15px',
+        margin: '10px',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#c7ede9',
+    },
+    textWrapper: {
+        borderRadius: '15px',
+        fontSize: '15px',
+        lineHeight: '20px',
+        textAlign: 'justify',
+        background: '#c7ede9',
+        padding: '10px 20px 20px 20px',
+        margin: '10px'
+    },
+    description: {
+        fontSize: '15px',
+        textAlign: 'justify'
     }
 };
+
+
+const textComponent = (title, text) => 
+    <div style={styles.textWrapper}>
+        <h2>{title}</h2>
+        <hr />
+        <div>{text}</div>
+    </div>
 
 const LeftSection = ({
         description,
@@ -20,12 +47,22 @@ const LeftSection = ({
         summary,
         title
     }) => 
-        <div style={{...styles.showMeBorders, ...styles.sectionWrapper}}>
-            {!!images.length && <div><img src={images[0]} /></div>}
-            <h1>{title}</h1>
-            <p>{summary}</p>
-            <p>{description}</p>
-        </div>
+        <section style={{...styles.showMeBorders, ...styles.sectionWrapper}}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                {!!images.length &&
+                    <span style={{...styles.sectionWrapper, ...styles.titleWrapper}}>
+                        <img src={images[0]} height="50px"/>
+                    </span>
+                }
+                {title && <span style={{...styles.sectionWrapper, ...styles.titleWrapper}}>
+                    <h1 style={{}}>{title}</h1>
+                </span>}
+            </div>
+            <div>
+                {summary && textComponent('Summary', summary)}
+                {description && textComponent('About', description)}
+            </div>
+        </section>
 
 
 

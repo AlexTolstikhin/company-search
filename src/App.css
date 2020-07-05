@@ -41,3 +41,8 @@
 input, button:focus {
   outline: none;
 }
+
+ul, li {
+  list-style-type: none;
+  padding-inline-start: 0rem;
+}

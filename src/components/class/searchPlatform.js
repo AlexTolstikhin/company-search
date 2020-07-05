@@ -3,15 +3,18 @@ import * as APIs from '../../searchAPIs/searchAPIs';
 
 // components
 import LeftSection from '../functional/leftSection';
+import RightSection from '../functional/rightSection';
 
 const inlineStyles = {
     inputWrapper: {
         display: 'flex',
         height: '200px',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     input: {
+        fontSize: '15px',
+        paddingLeft: '10px',
         width: '600px',
         height: '30px',
         borderRadius: '15px',
@@ -29,7 +32,7 @@ const inlineStyles = {
         padding: '0 100px'
     },
     showMeBorders: {
-        border: '1px solid grey'
+        // border: '1px solid grey'
     },
     list: {
         width: '100%',
@@ -55,7 +58,8 @@ export default class SearchPlatform extends PureComponent {
 
         this.state = {
             queryString: '',
-            leftSectionData: {}
+            leftSectionData: {},
+            rightSectionData: []
         }
     }
 
@@ -71,9 +75,9 @@ export default class SearchPlatform extends PureComponent {
         fetch(queryString).then(resp => {
             const [wikiData, duckDuckGo] = resp;
             this.setState({
-                leftSectionData: wikiData
+                leftSectionData: wikiData,
+                rightSectionData: duckDuckGo
             })
-            console.log(duckDuckGo)
         })
     }
 
@@ -85,9 +89,9 @@ export default class SearchPlatform extends PureComponent {
                 summary = '',
                 images = []
             },
+            rightSectionData = [],
             queryString
         } = this.state;
-        console.log(images)
         return (
             <div>
                 <div style={{...inlineStyles.showMeBorders, ...inlineStyles.inputWrapper}}>
@@ -112,7 +116,9 @@ export default class SearchPlatform extends PureComponent {
                         summary={summary}
                         title={title}
                     />
-                    <div>Right Section</div>
+                    <RightSection
+                        results={rightSectionData}
+                    />
                 </div>
             </div>
         )

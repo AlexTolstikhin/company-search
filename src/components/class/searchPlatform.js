@@ -27,11 +27,11 @@ const inlineStyles = {
         borderRadius: '15px',
         width: '100px'
     },
-    resultsWrapper: {
+    resultsWrapper: isSmallScreen => ({
         display: 'flex',
         flexWrap: 'wrap',
-        padding: '0 100px'
-    },
+        padding: isSmallScreen ? '20px' : '0 100px'
+    }),
     showMeBorders: {
         // border: '1px solid grey'
     },
@@ -83,21 +83,25 @@ export default class SearchPlatform extends PureComponent {
         e.preventDefault();
         const { queryString } = this.state;
         const { fetch } = APIs;
-        fetch(queryString).then(resp => {
-            const [wikiData, duckDuckGo] = resp;
-            this.setState({
-                leftSectionData: wikiData,
-                rightSectionData: duckDuckGo
+        fetch(queryString)
+            .then(resp => {
+                const [wikiData, duckDuckGo] = resp;
+                this.setState({
+                    leftSectionData: wikiData,
+                    rightSectionData: duckDuckGo
+                })
             })
-        })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     render() {
         const {
             leftSectionData: {
-                description = '',
+                extract = '',
                 title = '',
-                summary = '',
+                description = '',
                 images = []
             },
             rightSectionData = [],
@@ -121,12 +125,12 @@ export default class SearchPlatform extends PureComponent {
                         </button>
                     </form>
                 </div>
-                <div style={{...inlineStyles.showMeBorders, ...inlineStyles.resultsWrapper}}>
+                <div style={{...inlineStyles.showMeBorders, ...inlineStyles.resultsWrapper(isSmallScreen)}}>
                     <LeftSection
-                        description={description}
+                        description={extract}
                         images={images}
                         isSmallScreen={isSmallScreen}
-                        summary={summary}
+                        summary={description}
                         title={title}
                     />
                     <RightSection

@@ -17,7 +17,7 @@ const styles = {
 const RightSection = ({ isSmallScreen, results }) =>
     <section style={{ width: isSmallScreen ? '100%' : '40%' }}>
         <ul style={{ margin: '10px' }}>
-            {results.map(i => <li style={styles.listItem}><a href={i.FirstURL} target="blank">{i.Text}</a></li>)}
+            {results.map((item, index) => <li key={index} style={styles.listItem}><a href={item.FirstURL} target="blank">{item.Text}</a></li>)}
         </ul>
     </section>
 

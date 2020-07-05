@@ -1,11 +1,8 @@
 import axios from 'axios';
 
 function callWiki (query_string) {
-    const { WIKIPEDIA = {} } = window;
-    const replaceSpaces = query_string.replace(" ", "_");
-    return new Promise((resolve, reject) => {
-        return WIKIPEDIA.getData(`http://en.wikipedia.org/wiki/${replaceSpaces}`, resp => resolve(resp.summary))
-    });
+    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${query_string.replace(' ', '_')}`;
+    return axios.get(url).then(({ data }) => data)
 }
 
 function callDuckDuckGo (query_string) {
@@ -15,7 +12,12 @@ function callDuckDuckGo (query_string) {
 
 
 export function fetch(query_string) {
-    return Promise.all([callWiki(query_string), callDuckDuckGo(query_string)]).then((values) => {
-        return values;
-    })
+    return Promise.all([callWiki(query_string), callDuckDuckGo(query_string)])
+        .then((values) => {
+            return values;
+        })
+        .catch((err) => {
+            debugger;
+            return err
+        })
 }

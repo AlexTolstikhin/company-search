@@ -1,5 +1,13 @@
 The goal of the project to create extensible web-based tool that searches third-party APIs for information about a
-user-specified company 
+user-specified company.
+
+Search APIs that were used in the project:
+
+https://en.wikipedia.org/api/rest_v1/ ==> Wikipedia (Logos and Summary)
+
+https://api.duckduckgo.com/api ==> DuckDuckGo (Related topics list)
+
+
 
 First time before running scripts, please make sure you run:
 

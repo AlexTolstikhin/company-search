@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snaps RightSection with defined props 1`] = `
+<section
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <h2>
+    Relative Topics
+  </h2>
+  <ul
+    style={
+      Object {
+        "margin": "10px",
+      }
+    }
+  >
+    <li
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#c7ede9",
+          "borderRadius": "15px",
+          "display": "flex",
+          "height": "100px",
+          "justifyContent": "center",
+          "margin": "10px",
+          "padding": "10px",
+        }
+      }
+    >
+      <a
+        href="fuf"
+        target="blank"
+      >
+        luf
+      </a>
+    </li>
+  </ul>
+</section>
+`;
+
+exports[`snaps RightSection with undefined props 1`] = `
+<section
+  style={
+    Object {
+      "width": "40%",
+    }
+  }
+>
+  <h2>
+    Relative Topics
+  </h2>
+  <ul
+    style={
+      Object {
+        "margin": "10px",
+      }
+    }
+  />
+</section>
+`;

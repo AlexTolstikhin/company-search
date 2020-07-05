@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snaps SearchPlatform with undefined props 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": "200px",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        data-testid="input-element"
+        onChange={[Function]}
+        style={
+          Object {
+            "borderRadius": "15px",
+            "fontSize": "15px",
+            "height": "30px",
+            "paddingLeft": "10px",
+            "width": "600px",
+          }
+        }
+        type="text"
+        value=""
+      />
+      <button
+        style={
+          Object {
+            "borderRadius": "15px",
+            "cursor": "pointer",
+            "fontWeight": 700,
+            "height": "35px",
+            "margin": "15px",
+            "width": "100px",
+          }
+        }
+      >
+        Search...
+      </button>
+    </form>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexWrap": "wrap",
+        "padding": "0 100px",
+      }
+    }
+  />
+</div>
+`;

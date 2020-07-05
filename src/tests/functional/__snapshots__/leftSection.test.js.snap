@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snaps LeftSection with defined props 1`] = `
+<section
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <h2>
+    Main Info:
+  </h2>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <span
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <img
+        alt="fuf thumbnail"
+        height="60px"
+        src="fuf"
+      />
+    </span>
+    <span
+      style={
+        Object {
+          "alignItems": "center",
+          "background": "#c7ede9",
+          "borderRadius": "15px",
+          "display": "flex",
+          "height": "100px",
+          "justifyContent": "center",
+          "margin": "10px",
+          "width": "100%",
+        }
+      }
+    >
+      <h1
+        style={Object {}}
+      >
+        fuf
+      </h1>
+    </span>
+  </div>
+  <div>
+    <div
+      style={
+        Object {
+          "background": "#c7ede9",
+          "borderRadius": "15px",
+          "fontSize": "15px",
+          "lineHeight": "20px",
+          "margin": "10px",
+          "padding": "10px 20px 20px 20px",
+          "textAlign": "justify",
+        }
+      }
+    >
+      <h2>
+        Summary
+      </h2>
+      <hr />
+      <div>
+        fuf
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "background": "#c7ede9",
+          "borderRadius": "15px",
+          "fontSize": "15px",
+          "lineHeight": "20px",
+          "margin": "10px",
+          "padding": "10px 20px 20px 20px",
+          "textAlign": "justify",
+        }
+      }
+    >
+      <h2>
+        About
+      </h2>
+      <hr />
+      <div>
+        fuf
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`snaps LeftSection with undefined props 1`] = `
+<section
+  style={
+    Object {
+      "width": "60%",
+    }
+  }
+>
+  <h2>
+    Main Info:
+  </h2>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "justifyContent": "center",
+      }
+    }
+  >
+    
+  </div>
+  <div>
+    
+    
+  </div>
+</section>
+`;

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snaps InfoSection with defined props 1`] = `
+<div
+  style={
+    Object {
+      "background": "#c7ede9",
+      "borderRadius": "15px",
+      "fontSize": "15px",
+      "lineHeight": "20px",
+      "margin": "10px",
+      "padding": "10px 20px 20px 20px",
+      "textAlign": "justify",
+    }
+  }
+>
+  <h2>
+    foo
+  </h2>
+  <hr />
+  <div>
+    loo
+  </div>
+</div>
+`;
+
+exports[`snaps InfoSection with undefined props 1`] = `
+<div
+  style={
+    Object {
+      "background": "#c7ede9",
+      "borderRadius": "15px",
+      "fontSize": "15px",
+      "lineHeight": "20px",
+      "margin": "10px",
+      "padding": "10px 20px 20px 20px",
+      "textAlign": "justify",
+    }
+  }
+>
+  <h2>
+    
+  </h2>
+  <hr />
+  <div>
+    
+  </div>
+</div>
+`;

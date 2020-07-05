@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InfoSection from './InfoSection';
 
 const styles = {
-    showMeBorders: {
-        // border: '1px solid grey'
-    },
     sectionWrapper: isSmallScreen => ({
         width: isSmallScreen ? '100%' : '60%'
     }),
+    topSectionWrapper: {
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center'
+    },
     titleWrapper: {
         width: '100%',
         borderRadius: '15px',
@@ -18,41 +21,25 @@ const styles = {
         alignItems: 'center',
         background: '#c7ede9',
     },
-    textWrapper: {
-        borderRadius: '15px',
-        fontSize: '15px',
-        lineHeight: '20px',
-        textAlign: 'justify',
-        background: '#c7ede9',
-        padding: '10px 20px 20px 20px',
-        margin: '10px'
-    },
     description: {
         fontSize: '15px',
         textAlign: 'justify'
     }
 };
 
-
-const textComponent = (title, text) => 
-    <div style={styles.textWrapper}>
-        <h2>{title}</h2>
-        <hr />
-        <div>{text}</div>
-    </div>
-
 const LeftSection = ({
         description,
-        images,
         isSmallScreen,
         summary,
-        title,
+        thumbnail,
+        title
     }) => 
-        <section style={{...styles.showMeBorders, ...styles.sectionWrapper(isSmallScreen)}}>
+        <section style={styles.sectionWrapper(isSmallScreen)}>
+            <h2>Main Info:</h2>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {!!images.length &&
-                    <span style={{...styles.sectionWrapper, ...styles.titleWrapper}}>
-                        <img src={images[0]} height="50px"/>
+                {!!thumbnail.length &&
+                    <span style={styles.topSectionWrapper}>
+                        <img alt={`${title} thumbnail`} src={thumbnail} height="60px"/>
                     </span>
                 }
                 {title && <span style={{...styles.sectionWrapper, ...styles.titleWrapper}}>
@@ -60,8 +47,8 @@ const LeftSection = ({
                 </span>}
             </div>
             <div>
-                {summary && textComponent('Summary', summary)}
-                {description && textComponent('About', description)}
+                {summary && <InfoSection text={summary} title="Summary" />}
+                {description && <InfoSection text={description} title="About" />}
             </div>
         </section>
 
@@ -69,7 +56,7 @@ const LeftSection = ({
 
 LeftSection.defaultProps = {
     description: '',
-    images: [],
+    thumbnail: '',
     isSmallScreen: false,
     summary: '',
     title: ''
@@ -77,7 +64,7 @@ LeftSection.defaultProps = {
 
 LeftSection.propTypes = {
     description: PropTypes.string,
-    images: PropTypes.array,
+    thumbnail: PropTypes.string,
     isSmallScreen: PropTypes.bool,
     summary: PropTypes.string,
     title: PropTypes.string

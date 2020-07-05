@@ -1,9 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+
+test('renders Search... button', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const searchLabel = getByText("Search...");
+  expect(searchLabel).toBeInTheDocument();
+});
+
+test('renders Search... button', () => {
+  const { getByTestId } = render(<App />);
+  const searchLabel = getByTestId("input-element");
+  expect(searchLabel).toBeInTheDocument();
 });

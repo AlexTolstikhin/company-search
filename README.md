@@ -9,7 +9,7 @@ https://api.duckduckgo.com/api ==> DuckDuckGo (Related topics list)
 
 
 
-First time before running scripts, please make sure you run:
+### `First time before running scripts, please make sure you run:`
 
 ### `yarn install`
 

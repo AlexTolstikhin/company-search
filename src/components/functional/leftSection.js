@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findByLabelText } from '@testing-library/react';
 
 const styles = {
     showMeBorders: {
         // border: '1px solid grey'
     },
-    sectionWrapper: {
-        width: '60%',
-    },
+    sectionWrapper: isSmallScreen => ({
+        width: isSmallScreen ? '100%' : '60%'
+    }),
     titleWrapper: {
+        width: '100%',
         borderRadius: '15px',
         margin: '10px',
         height: '100px',
@@ -44,11 +44,12 @@ const textComponent = (title, text) =>
 const LeftSection = ({
         description,
         images,
+        isSmallScreen,
         summary,
-        title
+        title,
     }) => 
-        <section style={{...styles.showMeBorders, ...styles.sectionWrapper}}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+        <section style={{...styles.showMeBorders, ...styles.sectionWrapper(isSmallScreen)}}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {!!images.length &&
                     <span style={{...styles.sectionWrapper, ...styles.titleWrapper}}>
                         <img src={images[0]} height="50px"/>
@@ -69,6 +70,7 @@ const LeftSection = ({
 LeftSection.defaultProps = {
     description: '',
     images: [],
+    isSmallScreen: false,
     summary: '',
     title: ''
 };
@@ -76,6 +78,7 @@ LeftSection.defaultProps = {
 LeftSection.propTypes = {
     description: PropTypes.string,
     images: PropTypes.array,
+    isSmallScreen: PropTypes.bool,
     summary: PropTypes.string,
     title: PropTypes.string
 };

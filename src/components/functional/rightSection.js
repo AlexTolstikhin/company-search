@@ -14,8 +14,8 @@ const styles = {
     }
 };
 
-const RightSection = ({ results }) =>
-    <section style={{ width: '40%' }}>
+const RightSection = ({ isSmallScreen, results }) =>
+    <section style={{ width: isSmallScreen ? '100%' : '40%' }}>
         <ul style={{ margin: '10px' }}>
             {results.map(i => <li style={styles.listItem}><a href={i.FirstURL} target="blank">{i.Text}</a></li>)}
         </ul>
@@ -23,11 +23,13 @@ const RightSection = ({ results }) =>
 
 
 RightSection.defaultProps = {
-    results: []
+    results: [],
+    isSmallScreen: false
 }
 
 RightSection.propTypes = {
-    results: PropTypes.array
+    results: PropTypes.array,
+    isSmallScreen: PropTypes.bool
 }
 
 

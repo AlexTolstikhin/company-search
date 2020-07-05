@@ -12,13 +12,13 @@ const inlineStyles = {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    input: {
+    input: isSmallScreen => ({
         fontSize: '15px',
         paddingLeft: '10px',
-        width: '600px',
+        width: isSmallScreen ? '100%' : '600px',
         height: '30px',
         borderRadius: '15px',
-    },
+    }),
     submitButton: {
         fontWeight: 700,
         cursor: 'pointer',
@@ -29,6 +29,7 @@ const inlineStyles = {
     },
     resultsWrapper: {
         display: 'flex',
+        flexWrap: 'wrap',
         padding: '0 100px'
     },
     showMeBorders: {
@@ -59,10 +60,20 @@ export default class SearchPlatform extends PureComponent {
         this.state = {
             queryString: '',
             leftSectionData: {},
-            rightSectionData: []
+            rightSectionData: [],
+            isSmallScreen: window.innerWidth < 800
         }
     }
 
+    componentDidMount() {
+        window.addEventListener && window.addEventListener('resize', this.updateDimensions);
+    }
+
+    componentWillUnmount() {
+        window.addEventListener && window.removeEventListener('resize', this.updateDimensions);
+    }
+
+    updateDimensions = () => this.setState({ isSmallScreen: window.innerWidth < 800 })
 
     onInputChange = ({ target: { value } }) => {
         this.setState({ queryString: value.charAt(0).toUpperCase() + value.slice(1) }) 
@@ -90,6 +101,7 @@ export default class SearchPlatform extends PureComponent {
                 images = []
             },
             rightSectionData = [],
+            isSmallScreen,
             queryString
         } = this.state;
         return (
@@ -97,7 +109,7 @@ export default class SearchPlatform extends PureComponent {
                 <div style={{...inlineStyles.showMeBorders, ...inlineStyles.inputWrapper}}>
                     <form onSubmit={!!queryString.length ? (event) => this.onSearchSubmit(event) : e => e.preventDefault()}>
                         <input
-                            style={inlineStyles.input}
+                            style={inlineStyles.input(isSmallScreen)}
                             onChange={event => this.onInputChange(event)} 
                             type="text"
                             value={queryString}
@@ -113,11 +125,13 @@ export default class SearchPlatform extends PureComponent {
                     <LeftSection
                         description={description}
                         images={images}
+                        isSmallScreen={isSmallScreen}
                         summary={summary}
                         title={title}
                     />
                     <RightSection
                         results={rightSectionData}
+                        isSmallScreen={isSmallScreen}
                     />
                 </div>
             </div>

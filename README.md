@@ -1,5 +1,5 @@
 The goal of the project to create extensible web-based tool that searches third-party APIs for information about a
-user-specified company.
+user-specified company. 
 
 Search APIs that were used in the project:
 
@@ -42,3 +42,6 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+Notes: 
+    - Search is not limited to search only for organizations
